@@ -1,0 +1,36 @@
+/* Input de estatística customizado para a lista de atributos */
+.stat-input {
+    width: 60px;
+    text-align: center;
+    background-color: #343a40;
+    color: #fff;
+    border: 1px solid #495057;
+    border-radius: 0.25rem;
+    padding: 0.25rem;
+}
+
+/* Estilos para os campos de dados na aba de perfil */
+.data-field {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 0;
+}
+
+.label-field {
+    font-size: 0.8rem;
+    color: #adb5bd;
+    text-transform: uppercase;
+}
+
+/* Garante que os cards dentro das abas tenham a mesma cor de fundo */
+.tab-content > .tab-pane .card {
+    background-color: #2c2c2c; /* Cor de fundo um pouco mais clara que o body */
+    border: 1px solid #444;
+}
+
+/* Ajusta as cores das tabelas para o tema escuro */
+.table {
+    --bs-table-bg: transparent;
+    --bs-table-border-color: #444;
+    --bs-table-striped-bg: rgba(255, 255, 255, 0.05);
+}
