@@ -39,28 +39,23 @@
                         </div>
                     </div>
                     <hr />
-                    <div class="row">
-                        <div class="col-md-4 mb-2">
-                            <input name="poder1" type="text" class="form-control" placeholder="PODER 1" />
-                        </div>
-                        <div class="col-md-4 mb-2">
-                            <input name="poder2" type="text" class="form-control" placeholder="PODER 2" />
-                        </div>
-                        <div class="col-md-4 mb-2">
-                            <input name="poder3" type="text" class="form-control" placeholder="PODER 3" />
-                        </div>
-                        <div class="col-md-4 mb-2">
-                            <input name="poder4" type="text" class="form-control" placeholder="PODER 4" />
-                        </div>
-                        <div class="col-md-4 mb-2">
-                            <input name="poder5" type="text" class="form-control" placeholder="PODER 5" />
-                        </div>
-                        <div class="col-md-4 mb-2">
-                            <input name="poder6" type="text" class="form-control" placeholder="PODER 6" />
-                        </div>
-                        <div class="col-md-4 mb-2">
-                            <input name="poder7" type="text" class="form-control" placeholder="PODER 7 Ás" />
-                        </div>
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">Poderes (até 7 níveis)</label>
+                        <table class="table table-sm" id="poderes-tabela">
+                            <thead>
+                                <tr>
+                                    <th>NOME DO PODER</th>
+                                    <th>NÍVEL</th>
+                                    <th>PA</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody id="poderes-tbody">
+                                <!-- Linhas dinâmicas -->
+                            </tbody>
+                        </table>
+                        <button type="button" class="btn btn-success mb-2" onclick="adicionarLinhaPoder()">Adicionar Poder
+                            </button>
                     </div>
                     <hr />
                     <div class="mb-3">

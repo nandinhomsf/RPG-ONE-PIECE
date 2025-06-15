@@ -115,6 +115,29 @@ function removerLinhaArma(btn) {
     if (tr) tr.remove();
 }
 
+// --- Manipulação dinâmica de poderes ---
+function adicionarLinhaPoder(poder = {nome: '', nivel: '', pa: ''}) {
+    const poderesTbody = document.getElementById('poderes-tbody');
+    if (!poderesTbody) return;
+    if (poderesTbody.children.length >= 7) {
+        mostrarFeedback('Máximo de 7 poderes!', true);
+        return;
+    }
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
+        <td><input name="poder_nome" type="text" class="form-control" value="${poder.nome}" /></td>
+        <td><input name="poder_nivel" type="number" min="1" max="7" class="form-control" value="${poder.nivel || ''}" /></td>
+        <td><input name="poder_pa" type="number" min="0" class="form-control" value="${poder.pa || ''}" /></td>
+        <td><button type="button" class="btn btn-danger" onclick="removerLinhaPoder(this)">Excluir</button></td>
+    `;
+    poderesTbody.appendChild(tr);
+}
+
+function removerLinhaPoder(btn) {
+    const tr = btn.closest('tr');
+    if (tr) tr.remove();
+}
+
 // --- Feedback visual ---
 function mostrarFeedback(msg, erro = false) {
     let div = document.getElementById('feedback-msg');
@@ -212,3 +235,70 @@ function adicionarBotaoCarregar(formId) {
         form.appendChild(input);
     }
 }
+
+// --- Ajuste para salvar/carregar poderes dinâmicos ---
+(function ajustarPoderesNoForm() {
+    const formId = 'poderes-form';
+    document.addEventListener('DOMContentLoaded', function() {
+        const form = document.getElementById(formId);
+        if (!form) return;
+        // Carregar poderes do localStorage
+        const ficha = JSON.parse(localStorage.getItem('fichaRPG') || '{}');
+        if (Array.isArray(ficha.poderes)) {
+            const poderesTbody = document.getElementById('poderes-tbody');
+            if (poderesTbody) {
+                poderesTbody.innerHTML = '';
+                ficha.poderes.forEach(poder => adicionarLinhaPoder(poder));
+            }
+        } else if (document.getElementById('poderes-tbody') && document.getElementById('poderes-tbody').children.length === 0) {
+            adicionarLinhaPoder();
+        }
+        // Salvar ao alterar qualquer campo dos poderes
+        form.addEventListener('input', () => {
+            const poderesTbody = document.getElementById('poderes-tbody');
+            if (!poderesTbody) return;
+            const poderes = [];
+            poderesTbody.querySelectorAll('tr').forEach(tr => {
+                const nome = tr.querySelector('input[name="poder_nome"]')?.value || '';
+                const nivel = tr.querySelector('input[name="poder_nivel"]')?.value || '';
+                const pa = tr.querySelector('input[name="poder_pa"]')?.value || '';
+                if (nome) poderes.push({nome, nivel, pa});
+            });
+            // Atualiza localStorage mantendo outros dados
+            const fichaAtual = JSON.parse(localStorage.getItem('fichaRPG') || '{}');
+            fichaAtual.poderes = poderes;
+            localStorage.setItem('fichaRPG', JSON.stringify(fichaAtual));
+        });
+    });
+})();
+
+// --- Ajuste para salvar/carregar JSON dos poderes ---
+(function ajustarPoderesJSON() {
+    const originalGetFormData = getFormData;
+    window.getFormData = function(form) {
+        const data = originalGetFormData(form);
+        // Poderes dinâmicos
+        const poderesTbody = document.getElementById('poderes-tbody');
+        if (poderesTbody) {
+            data.poderes = [];
+            poderesTbody.querySelectorAll('tr').forEach(tr => {
+                const nome = tr.querySelector('input[name="poder_nome"]')?.value || '';
+                const nivel = tr.querySelector('input[name="poder_nivel"]')?.value || '';
+                const pa = tr.querySelector('input[name="poder_pa"]')?.value || '';
+                if (nome) data.poderes.push({nome, nivel, pa});
+            });
+        }
+        return data;
+    };
+    const originalSetFormData = setFormData;
+    window.setFormData = function(form, data) {
+        originalSetFormData(form, data);
+        // Poderes dinâmicos
+        const poderesTbody = document.getElementById('poderes-tbody');
+        if (poderesTbody && Array.isArray(data.poderes)) {
+            poderesTbody.innerHTML = '';
+            data.poderes.forEach(poder => adicionarLinhaPoder(poder));
+            if (data.poderes.length === 0) adicionarLinhaPoder();
+        }
+    };
+})();
