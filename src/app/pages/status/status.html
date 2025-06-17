@@ -1,0 +1,96 @@
+<form>
+  <div class="row g-3">
+    <div class="col-md-4 d-flex flex-column">
+      <div class="card flex-grow-1 mb-3">
+        <div class="card-header text-center fw-bold">STATUS</div>
+        <div class="list-group fw-bold list-group-flush">
+          <div class="list-group-item d-flex justify-content-between align-items-center">FÍSICO
+            <input name="fisico" type="number" class="stat-input" [(ngModel)]="ficha.fisico" /></div>
+          <div class="list-group-item d-flex justify-content-between align-items-center">
+            VELOCIDADE <input name="velocidade" type="number" class="stat-input" [(ngModel)]="ficha.velocidade" />
+          </div>
+          <div class="list-group-item d-flex justify-content-between align-items-center">
+            RESISTÊNCIA <input name="resistencia" type="number" class="stat-input" [(ngModel)]="ficha.resistencia" />
+          </div>
+          <div class="list-group-item d-flex justify-content-between align-items-center">VONTADE
+            <input name="vontade" type="number" class="stat-input" [(ngModel)]="ficha.vontade" /></div>
+          <div class="list-group-item d-flex justify-content-between align-items-center">ESPÍRITO
+            <input name="espirito" type="number" class="stat-input" [(ngModel)]="ficha.espirito" /></div>
+          <div class="list-group-item d-flex justify-content-between align-items-center">
+            ENGENHOSIDADE <input name="engenhosidade" type="number" class="stat-input" [(ngModel)]="ficha.engenhosidade" /></div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-8 text-center fw-bold">
+      <div class="row g-2">
+        <div class="col-4">
+          <label class="form-label">DEFESA</label>
+          <input name="defesa" type="number" class="form-control form-control-lg text-center" [(ngModel)]="ficha.defesa" />
+        </div>
+        <div class="col-4">
+          <label class="form-label">INICIATIVA</label>
+          <input name="iniciativa" type="number" class="form-control form-control-lg text-center" [(ngModel)]="ficha.iniciativa" />
+        </div>
+        <div class="col-4">
+          <label class="form-label">DESLOCAMENTO</label>
+          <input name="deslocamento" type="text" class="form-control form-control-lg text-center" [(ngModel)]="ficha.deslocamento" />
+        </div>
+        <div class="col-6">
+          <label class="form-label">PV MÁXIMOS</label>
+          <input name="pv_max" type="number" class="form-control text-center" [(ngModel)]="ficha.pv_max" />
+        </div>
+        <div class="col-6">
+          <label class="form-label">PV ATUAIS</label>
+          <input name="pv_atuais" type="number" class="form-control text-center" [(ngModel)]="ficha.pv_atuais" />
+        </div>
+        <div class="col-6">
+          <label class="form-label">PV TEMPORÁRIOS</label>
+          <input name="pv_temp" type="number" class="form-control text-center" [(ngModel)]="ficha.pv_temp" />
+        </div>
+        <div class="col-6">
+          <label class="form-label">RESISTÊNCIA (%)</label>
+          <input name="resistencia_perc" type="number" class="form-control text-center" [(ngModel)]="ficha.resistencia_perc" />
+        </div>
+        <div class="col-6">
+          <label class="form-label">EVASÃO</label>
+          <input name="evasao" type="text" class="form-control text-center" [(ngModel)]="ficha.evasao" />
+        </div>
+        <div class="col-6">
+          <label class="form-label">PONTO DE AÇÃO</label>
+          <input name="pa" type="number" class="form-control text-center" [(ngModel)]="ficha.pa" />
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card flex-grow-1 d-flex flex-column justify-content-between mt-3">
+    <div class="card-body pb-0">
+      <h5 class="mt-2">Armas e Poderes</h5>
+      <table class="table table-sm">
+        <thead>
+          <tr>
+            <th>NOME</th>
+            <th>PONTO DE AÇÃO</th>
+            <th>DANO/TIPO</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let arma of ficha.armas; let i = index">
+            <td><input name="arma_nome" type="text" class="form-control" [(ngModel)]="arma.nome" /></td>
+            <td><input name="arma_bonus" type="text" class="form-control" [(ngModel)]="arma.bonus" /></td>
+            <td><input name="arma_dano" type="text" class="form-control" [(ngModel)]="arma.dano" /></td>
+            <td><button type="button" class="btn btn-danger" (click)="removerLinhaArma(i)">Excluir</button></td>
+          </tr>
+        </tbody>
+      </table>
+      <button type="button" class="btn btn-success mb-2" (click)="adicionarLinhaArma()">Adicionar Arma/Poder</button>
+      <div class="mb-3">
+        <label class="form-label">ANOTAÇÕES</label>
+        <textarea name="anotacoes" class="form-control" rows="2" [(ngModel)]="ficha.anotacoes"></textarea>
+      </div>
+    </div>
+    <div class="card-footer bg-transparent border-0 text-end">
+      <!-- Botão de salvar removido -->
+    </div>
+  </div>
+</form>

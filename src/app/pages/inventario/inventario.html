@@ -1,0 +1,28 @@
+<form>
+  <div class="card card-body mt-3">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="mb-3">
+          <label class="form-label">CAIXA DE ARMAS</label>
+          <textarea name="armas" class="form-control" rows="3" [(ngModel)]="inventario.armas"></textarea>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">EQUIPAMENTOS</label>
+          <textarea name="equipamentos" class="form-control" rows="3" [(ngModel)]="inventario.equipamentos"></textarea>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="mb-3">
+          <label class="form-label">CAIXA DE ITENS</label>
+          <textarea name="itens" class="form-control" rows="3" [(ngModel)]="inventario.itens"></textarea>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">TESOURO</label>
+          <textarea name="tesouro" class="form-control" rows="3" [(ngModel)]="inventario.tesouro"></textarea>
+        </div>
+      </div>
+    </div>
+    <div class="mb-3 text-end">
+    </div>
+  </div>
+</form>

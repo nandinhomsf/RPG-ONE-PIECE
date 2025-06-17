@@ -1,0 +1,60 @@
+<form>
+  <div class="card card-body fw-bold mt-3">
+    <div class="row text-center">
+      <div class="col-md-4">
+        <label class="label-field">CLASSE</label>
+        <input name="classe" type="text" class="form-control data-field" [(ngModel)]="perfil.classe" />
+      </div>
+      <div class="col-md-4">
+        <label class="label-field">OCUPAÇÃO</label>
+        <input name="ocupacao" type="text" class="form-control data-field" [(ngModel)]="perfil.ocupacao" />
+      </div>
+      <div class="col-md-4">
+        <label class="label-field">RAÇA</label>
+        <input name="raca" type="text" class="form-control data-field" [(ngModel)]="perfil.raca" />
+      </div>
+    </div>
+    <hr />
+    <div class="row text-center">
+      <div class="col-md-4">
+        <label class="label-field">IDADE</label>
+        <input name="idade" type="text" class="form-control data-field" [(ngModel)]="perfil.idade" />
+      </div>
+      <div class="col-md-4">
+        <label class="label-field">ALTURA</label>
+        <input name="altura" type="text" class="form-control data-field" [(ngModel)]="perfil.altura" />
+      </div>
+      <div class="col-md-4">
+        <label class="label-field">PESO</label>
+        <input name="peso" type="text" class="form-control data-field" [(ngModel)]="perfil.peso" />
+      </div>
+    </div>
+    <hr />
+    <div class="row text-center">
+      <div class="col-md-4">
+        <label class="label-field">OLHOS</label>
+        <input name="olhos" type="text" class="form-control data-field" [(ngModel)]="perfil.olhos" />
+      </div>
+      <div class="col-md-4">
+        <label class="label-field">PELE</label>
+        <input name="pele" type="text" class="form-control data-field" [(ngModel)]="perfil.pele" />
+      </div>
+      <div class="col-md-4">
+        <label class="label-field">CABELO</label>
+        <input name="cabelo" type="text" class="form-control data-field" [(ngModel)]="perfil.cabelo" />
+      </div>
+    </div>
+    <hr />
+    <div class="mb-3">
+      <label class="form-label">HISTÓRIA DO PERSONAGEM</label>
+      <textarea name="historia" class="form-control" rows="6" [(ngModel)]="perfil.historia"></textarea>
+    </div>
+    <div class="mb-3">
+      <label class="form-label">ALIADOS E ORGANIZAÇÕES</label>
+      <textarea name="aliados" class="form-control" rows="3" [(ngModel)]="perfil.aliados"></textarea>
+    </div>
+    <div class="mb-3 text-end">
+      <!-- Botão de salvar removido -->
+    </div>
+  </div>
+</form>
